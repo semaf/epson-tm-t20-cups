@@ -5,8 +5,8 @@
 
 /etc/init.d/cups stop
 cp rastertozj /usr/lib/cups/filter/
-mkdir -p /usr/share/cups/model/zjiang
-cp ZJ-58.ppd /usr/share/cups/model/zjiang/
+mkdir -p /usr/share/cups/model/EPSON
+cp tm20.ppd /usr/share/cups/model/EPSON/
 cd /usr/lib/cups/filter
 chmod 755 rastertozj
 chown root:root rastertozj
