@@ -42,9 +42,6 @@ static const struct command cashDrawerEject [2] =
 static const struct command rasterModeStartCommand =
 {4,(char[4]){0x1d,0x76,0x30,0}};
 
-static const struct command pageCutCommand =
-{4, (char[4]){29,'V','A',20}};
-
 #ifdef DEBUGP
 FILE* lfd = 0;
 #endif
@@ -121,7 +118,7 @@ inline int getOptionChoiceIndex(const char * choiceName, ppd_file_t * ppd)
 }
 
 
-inline void initializeSettings(char * commandLineOptionSettings)
+void initializeSettings(char * commandLineOptionSettings)
 {
 	ppd_file_t *    ppd         = NULL;
 	cups_option_t * options     = NULL;
@@ -165,7 +162,6 @@ void ShutDown()
 		outputCommand(cashDrawerEject[0]);
 	if ( settings.cashDrawer2==2 )
 		outputCommand(cashDrawerEject[1]);
-	outputCommand(pageCutCommand);
 	outputCommand(printerInitializeCommand);
 }
 
@@ -261,7 +257,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "PAGE: %d %d\n", ++page, header.NumCopies);
 		pageSetup();
 
-		int foo = ( header.cupsWidth > 0x240 ) ? 0x240 : header.cupsWidth;
+		int foo = ( header.cupsWidth > 0x180 ) ? 0x180 : header.cupsWidth;
 		foo = (foo+7) & 0xFFFFFFF8;
 		int width_size = foo >> 3;
 
