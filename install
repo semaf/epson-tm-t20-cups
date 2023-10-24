@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Installs zj-58 driver
-# Tested as working under Ubuntu 14.04
+# Installs TM20 driver
+# Tested as working under Debian
 
 /etc/init.d/cups stop
 cp rastertozj /usr/lib/cups/filter/
